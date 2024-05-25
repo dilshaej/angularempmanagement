@@ -1,0 +1,38 @@
+
+<h1 class="text-center mt-3">Add Employee</h1>
+<div class="container">  
+    <form #addUserForm="ngForm"  class="border mt-5  p-3 rounded">
+        <div class="form-floating mb-3">
+            <input #id="ngModel" name="id" [(ngModel)]="employee.id"   type="text" class="form-control" id="floatingInputID" placeholder="Employee ID" pattern="[a-zA-Z0-9]*" required>
+            <label for="floatingInputID">Employee ID</label>
+        </div>
+        <div *ngIf="id.invalid && id.touched" class="mb-3 text-danger fw-bolder">*Invalid ID</div>
+        <div class="form-floating mb-3">
+            <input #name="ngModel" name="name" [(ngModel)]="employee.name" type="text" class="form-control" id="floatingInputName" placeholder="Employee Name" pattern="[a-zA-Z]*" required>
+            <label for="floatingInputName">Employee Name</label>
+        </div>
+        <div *ngIf="name.invalid && name.touched" class="mb-3 text-danger fw-bolder">*Invalid user name</div>
+    
+        <div class="form-floating mb-3">
+            <input #email="ngModel"  name="email" [(ngModel)]="employee.email" type="email" class="form-control" id="floatingInputemail" placeholder="Employee Mail" email required>
+            <label for="floatingInputemail">Employee Mail</label>
+        </div>
+        <div *ngIf="email.invalid && email.touched" class="mb-3 text-danger fw-bolder">*Invalid user email</div>
+    
+        <div class="form-floating mb-3">
+            <select #status="ngModel" name="status" [(ngModel)]="employee.status" class="form-control" id="floatingInputStatus" placeholder="Employee Status" required>
+                <option value="" hidden disabled selected></option>
+                <option value="1">Active</option>
+                <option value="0">InActive</option>
+            </select>
+            <label for="floatingInputStatus">Employee Status</label>
+        </div>
+        <div *ngIf="status.invalid && status.touched" class="mb-3 text-danger fw-bolder">*Invalid user status</div>
+    
+        <div class="d-flex">
+            <button (click)="addEmp()" [disabled]="addUserForm.invalid" class="btn btn-success">Add</button>
+            <button  (click)="cancel()" class="btn btn-primary ms-3">Cancel</button>
+        </div>
+    
+    </form>
+</div>
